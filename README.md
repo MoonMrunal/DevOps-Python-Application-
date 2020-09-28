@@ -1,204 +1,137 @@
 # DevOps-Python-Application
 
-# DevOpstask
-
-# Solution
+# Work On Machine
 ## System : DigitaloceanDroplet 
-## Tier :  3
-## OS : Ubuntu 20.04(LTS)x64
+## OS : Ubuntu 18.04(LTS)x64
 ## CPU : 2 
 ## Memory : 2GB
-## Technology stack used :  Putty, PuttyGen, Docker, DockerHub, Kubectl, Minikube,VirtualBox,
+## Technology :  Putty, PuttyGen, Docker, DockerHub, Kubectl, Minikube,VirtualBox,
 
-##### To Maximum Privileges 
+Set maximum privileges run 
 ```sudo su ```
 
-##### Updating System
+Upgrade system
 ```apt-get upgrade ```
 
-##### To KubeCtl installing
+Install KubeCtl
+Download latest release
 ```curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" ``` 
 
-##### To kubectl binary executable.
+Make the kubectl binary executable.
 ```chmod +x ./kubectl ``` 
 
-##### Moving binary in to your PATH.
+Move the binary in to your PATH.
 ```sudo mv ./kubectl /usr/local/bin/kubectl ``` 
 
-##### Test to ensure the version you installed is up-to-date:
+Test to ensure the version you installed is up-to-date:
 ```kubectl version --client ``` 
 
-##### Installing Docker in The System
+Install Docker
 ```apt-get install docker.io -y ``` 
 
-##### Check version
+Check version
 ```docker version ``` 
 
-##### Installing MiniKube
+Install MiniKube
+Install Minikube via direct download
 ```curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
   && chmod +x minikube
   ```
-##### To adding Minikube executable to your path:
+
+add the Minikube executable to your path:
 
 ```sudo mkdir -p /usr/local/bin/ ``` 
 ```sudo install minikube /usr/local/bin/ ``` 
 
-##### Check version
+Check version
 ```minikube version ``` 
 
-##### Start minikube
+Start minikube
 ```minikube start ``` 
 
-##### If VM error occured executed
+If VM error occured executed
 ```minikube start -vm-driver=none ``` 
 
-##### check minikube status
+check minikube status
 ```minikube status ```
 
 ```sudo apt-get install -y conntrack ```
 
-##### Minikube started
+Minikube started
 
-##### Deploy pod
-##### Go To inside minikube
+To deploy pod
+To go inside minikube
 ```sudo -i ```
 
-##### Create a container using kubectl command
-```kubectl run hello-minikube --image=vaibhavdanao/node-hello-app --port=8080 ```
+To create first container using kubectl command
+```kubectl run mrunalminikube --image=mrunalmoon/node-hello-app --port=8080 ```
 
-##### Check pods
+Check pods
 ```kubectl get pods ```
 
-##### To 10 replica running
-```kubectl scale deployment hello-minikube --replicas 10 ```
-
-##### Task 2 completed
-
-##### Create docker file
-```vi Dockerfile ```
-
-##### Write to the file
-```
-FROM ubuntu
-
-WORKDIR "/app"
-
-RUN apt-get update \
- && apt-get dist-upgrade -y \
- && apt-get clean \
- && echo 'Finished installing dependencies'
-
-RUN npm install --production
-
-ENV NODE_ENV production
-ENV PORT 3000
-
-EXPOSE 3000
-
-USER node
-
-CMD ["npm", "start"]
-```
-
-##### To create image from dockerfile
+Write dockerfile configuration
+To create image from dockerfile
 ```docker build -it nodejs ```
 
-##### To check image
+To check image
 ```docker images ```
 
-##### Task 4 completed
+custom docker image hosted on any docker
 
-##### Create Account on https://hub.docker.com/
+Create Account on https://hub.docker.com/
 
-##### login
+login
 ```docker login ```
 
-##### Push repository to docker hub
-```docker push vaibhavdanao/node-hello-app ```
+Push repository to docker hub
+```docker push mrunalmoon/node-hello-app ```
 
-##### To make private repository
+To make private repository
 https://hub.docker.com/ -----> select node-hello-app repository ----> setting ----> make repository private
 
-##### Task 1 completed
+private docker registry created
 
-##### Auto Scaling at average 50% CPU
-```kubectl autoscale deployment hello-minikube --min=1 --max=4 --cpu-percent=50```
+To set loadbalancer & expose on port 3000
+```kubectl expose deployment mrunalminikube -type=LoadBalancer --port=3000 ```
 
-##### Get the available hpa in your cluster.
-```kubectl get hpa```
-
-##### Auto Scaling at average 60% memory
-``` vi memory.yaml```
-
-#### Write to file
-```
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: hello-minikube
-spec:
-  maxReplicas: 4
-  minReplicas: 1
-  scaleTargetRef:
-    apiVersion:
-    kind: Deployment
-    name: hello-minikube
-  metrics:
-  - type: Resource
-    resource:
-      name: memory
-      targetAverageUtilization: 60
-```
-
-#### To Apply changes
-```kubectl apply -f memory.yaml```
-
-#### Listed Resources
-```kubectl get all```
-
-##### Task 5 completed
-
-##### Set a LoadBalancer & Expose on Port 3000
-```kubectl expose deployment hello-minikube -type=LoadBalancer --port=3000 ```
-
-##### Check LoadBalancer on Port
+Check loadbalancer on port
 ```kubectl get services ```
 
-##### Task 6 completed
+Kubernates loadbalancer set at port 3000
 
-##### Replication control for 7 replica in .yaml
-```vi replication.yaml ```
+Check pods
+```kubectl get pods ```
 
-##### Write to file 
-```
-apiVersion: v1
-kind: ReplicationController
-metadata:
-  name: hello-minikube
-spec:
-  replicas: 7
-  selector:
-    app: hello-minikube
-  template:
-    metadata:
-      name: hello-minikube
-      labels:
-        app: hello-minikube
-    spec:
-      containers:
-      - name: hello-minikube
-        image: hello-minikube
-        ports:
-        - containerPort: 3000
-```
-##### Run replication
+For 10 replica running
+```kubectl scale deployment mrunalminikube --replicas 10 ```
+
+Complete 10 replicas setup
+
+auto scale at average 50% CPU
+```kubectl autoscale deployment mrunalminikube --min=1 --max=4 --cpu-percent=50```
+
+To get the available hpa in your cluster.
+```kubectl get hpa```
+
+#### Write configuration to setram.yaml
+#### Apply changes
+```kubectl apply -f setram.yaml```
+
+#### List all resources
+```kubectl get all```
+
+auto scale at average 50% CPU and 60% memory set
+
+Replication configuration set
+Run replication
 ```kubectl apply -f replication.yaml ```
 
-##### Check rplications control
-```kubectl describe replicationcontrollers/hello-minikube ```
+Check rplications control
+```kubectl describe replicationcontrollers/mrunalminikube ```
 
-##### Task 7 completed
-##### Task 9, 10, 11 completed
+Any changes in the source code will not be accepted.
+All submissions must be accepted as GitHub repository.
+Please include a README file.
 
 
 
