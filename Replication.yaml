@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mrunalminikube
+spec:
+  replicas: 7
+  selector:
+    app: mrunalminikube
+  template:
+    metadata:
+      name: mrunalminikube
+      labels:
+        app: mrunalminikube
+    spec:
+      containers:
+      - name: mrunalminikube
+        image: mrunalminikube
+        ports:
+        - containerPort: 3000
