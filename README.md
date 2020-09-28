@@ -64,14 +64,14 @@ To go inside minikube
 ```sudo -i ```
 
 To create first container using kubectl command
-```kubectl run mrunalminikube --image=mrunalmoon/node-hello-app --port=8080 ```
+```kubectl run mrunalminikube --image=mrunalmoon/pythontestapp --port=8080 ```
 
 Check pods
 ```kubectl get pods ```
 
 Write dockerfile configuration
 To create image from dockerfile
-```docker build -it nodejs ```
+```docker build -it pythontest ```
 
 To check image
 ```docker images ```
@@ -84,10 +84,10 @@ login
 ```docker login ```
 
 Push repository to docker hub
-```docker push mrunalmoon/node-hello-app ```
+```docker push mrunalmoon/pythontestapp ```
 
 To make private repository
-https://hub.docker.com/ -----> select node-hello-app repository ----> setting ----> make repository private
+https://hub.docker.com/ -----> select pythontestapp repository ----> setting ----> make repository private
 
 private docker registry created
 
