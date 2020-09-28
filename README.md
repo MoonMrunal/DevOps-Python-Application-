@@ -1,11 +1,11 @@
 # DevOps-Python-Application
 
-# Work On Machine
-## System : DigitaloceanDroplet 
-## OS : Ubuntu 18.04(LTS)x64
-## CPU : 2 
-## Memory : 2GB
-## Technology :  Putty, PuttyGen, Docker, DockerHub, Kubectl, Minikube,VirtualBox,
+### Work On Machine
+#### System : DigitaloceanDroplet 
+#### OS : Ubuntu 18.04(LTS)x64
+#### CPU : 2 
+#### Memory : 2GB
+#### Technology :  Putty, PuttyGen, Docker, DockerHub, Kubectl, Minikube,VirtualBox,
 
 Set maximum privileges run 
 ```sudo su ```
