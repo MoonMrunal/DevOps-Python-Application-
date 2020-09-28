@@ -87,7 +87,11 @@ Push repository to docker hub
 ```docker push mrunalmoon/pythontestapp ```
 
 To make private repository
-https://hub.docker.com/ -----> select pythontestapp repository ----> setting ----> make repository private
+``` https://hub.docker.com/
+select pythontestapp repository
+setting
+make private
+```
 
 private docker registry created
 
